@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Articles\ArticlesRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,12 @@ Route::get('/', function () {
         'articles' => App\Article::all(),
     ]);
 });
+
+Route::get('/search', function (ArticlesRepository $repository) {
+    $articles = $repository->search((string) request('q'));
+
+    return view('articles.index', [
+        'articles' => $articles,
+    ]);
+});
+

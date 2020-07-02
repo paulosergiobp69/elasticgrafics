@@ -7,6 +7,17 @@
                 Articles <small>({{ $articles->count() }})</small>
             </div>
             <div class="card-body">
+                <form action="{{ url('search') }}" method="get">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            name="q"
+                            class="form-control"
+                            placeholder="Busca..."
+                            value="{{ request('q') }}"
+                        />
+                    </div>
+                </form>
                 @forelse ($articles as $article)
                     <article class="mb-3">
                         <h2>{{ $article->title }}</h2>
@@ -26,4 +37,3 @@
         </div>
     </div>
 @stop
-

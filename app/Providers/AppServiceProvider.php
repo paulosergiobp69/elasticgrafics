@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Articles;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //dd("Alo do Paulo");
+            
+        $this->app->bind(
+            Articles\ArticlesRepository::class,
+            Articles\EloquentRepository::class
+        );
+
     }
 
     /**

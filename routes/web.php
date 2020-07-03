@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Articles\ArticlesRepository;
+use App\Fipe_modelo\FipemodeloRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
+    return view('Fipemodelos.index', [
+        'fipe_modelos' => App\fipe_modelo::all(),
+    ]);
+});
+
+
+Route::get('/artigos', function () {
     return view('articles.index', [
         'articles' => App\Article::all(),
     ]);
@@ -33,6 +41,16 @@ Route::get('/search', function (ArticlesRepository $repository) {
 
     return view('articles.index', [
         'articles' => $articles,
+    ]);
+});
+
+
+Route::get('/search_fipe', function (FipemodeloRepository $repository) {
+    
+    $fipe_modelos = $repository->search((string) request('q'));
+
+    return view('Fipemodelos.index', [
+        'fipe_modelos' => $fipe_modelos,
     ]);
 });
 

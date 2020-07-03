@@ -3,6 +3,7 @@
 namespace App\Search;
 
 use App\Article;
+use App\fipe_modelo;
 use Elasticsearch\Client;
 
 class ElasticsearchObserver

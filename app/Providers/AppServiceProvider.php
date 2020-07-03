@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Support\ServiceProvider;
 use App\Articles;
+use App\Fipe_modelo;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 
@@ -28,6 +30,23 @@ class AppServiceProvider extends ServiceProvider
                 $app->make(Client::class)
             );
         });
+
+        $this->app->bind(Fipe_modelo\FipemodeloRepository::class, function ($app) {
+            // This is useful in case we want to turn-off our
+            // search cluster or when deploying the search
+            // to a live, running application at first.
+           
+            if (! config('services.search.enabled')) {
+                return new Fipe_modelo\FipemodeloEloquent();
+            }
+
+            
+            return new Fipe_modelo\ElasticsearchRepository(
+                $app->make(Client::class)
+            );
+        });
+        
+
 
         $this->bindSearchClient();
     }

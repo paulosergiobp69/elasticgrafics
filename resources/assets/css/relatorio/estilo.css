@@ -1,0 +1,19 @@
+.modal-dialog#teste {
+    max-height: 800px;
+	min-width:900px;
+	font-size:13px;
+}
+.row {
+	margin-bottom:5px;
+}
+.panel {
+	margin-bottom:0px;
+	margin-left:0px;
+}
+.badge-vermelho {
+	background:#F00;
+}
+
+.badge-azul {
+	background:#006;
+}

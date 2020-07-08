@@ -1,0 +1,61 @@
+.centralizar
+{
+    vertical-align: middle !important;
+}
+
+.panel-fornec {
+  border-color: #660000;
+}
+.panel-fornec > .panel-heading {
+  color: #fff;
+  background-color: #660000;
+  border-color: #660000;
+  font-size:11px;
+}
+.panel-fornec > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #660000;
+}
+.panel-fornec > .panel-heading .badge {
+  color: #660000;
+  background-color: #fff;
+}
+.panel-fornec > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #660000;
+}
+
+
+.panel-desabilitado {
+  border-color: #CCCCCC;
+}
+.panel-desabilitado > .panel-heading {
+  color: #fff;
+  background-color: #CCCCCC;
+  border-color: #CCCCCC;
+  font-size:11px;
+}
+.panel-desabilitado > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #CCCCCC;
+}
+.panel-desabilitado > .panel-heading .badge {
+  color: #CCCCCC;
+  background-color: #fff;
+}
+.panel-desabilitado > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #CCCCCC;
+}
+
+
+.tam-coluna-numerica
+{
+	width:30px;
+}
+
+.status-amarelo
+{
+	color:#F90;
+}
+
+.status-azul
+{
+	color:#00F;
+}

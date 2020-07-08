@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS personalizado */
+
+body {
+	padding-top:75px;
+}
+
+div.container {
+        width: 80%;
+    }
+
+
+.bloqueado
+{
+	color:#999;
+}

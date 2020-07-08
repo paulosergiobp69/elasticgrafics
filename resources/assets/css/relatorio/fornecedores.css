@@ -1,0 +1,241 @@
+@charset "utf-8";
+/* CSS personalizado */
+
+/*!
+ * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+
+
+.huge {
+    font-size: 30px;
+}
+
+.panel-gray {
+    border-color: #999999;
+}
+
+.panel-gray .panel-heading {
+    border-color: #666666;
+    color: #fff;
+    background-color: #999999;
+}
+
+.panel-gray a {
+    color: #999999;
+}
+
+.panel-gray a:hover {
+    color: #3d8b3d;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green a {
+    color: #5cb85c;
+}
+
+.panel-green a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red a {
+    color: #d9534f;
+}
+
+.panel-red a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow a {
+    color: #f0ad4e;
+}
+
+.panel-yellow a:hover {
+    color: #df8a13;
+}
+
+.bg-gray {
+	border-color: #999999;
+    color: #fff;
+    background-color: #999999;
+}
+
+
+.bg-green {
+	border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.bg-yellow {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.bg-red {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.btn-gray {
+	color: #fff;
+	background-color: #009900;
+	border-color: #006600;
+}
+
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray.focus,
+.btn-gray:active,
+.btn-gray.active,
+.open > .dropdown-toggle.btn-gray {
+  color: #fff;
+  background-color: #FF9900;
+  border-color: #006600;
+}
+
+.btn-green {
+	color: #fff;
+	background-color: #009900;
+	border-color: #006600;
+}
+
+.btn-green:hover,
+.btn-green:focus,
+.btn-green.focus,
+.btn-green:active,
+.btn-green.active,
+.open > .dropdown-toggle.btn-green {
+  color: #fff;
+  background-color: #FF9900;
+  border-color: #006600;
+}
+
+.btn-yellow {
+	color: #fff;
+	background-color: #FFCC66;
+	border-color: #FF9900;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus,
+.btn-yellow.focus,
+.btn-yellow:active,
+.btn-yellow.active,
+.open > .dropdown-toggle.btn-yellow {
+  color: #fff;
+  background-color: #FFCC66;
+  border-color: #FF9900;
+}
+
+.btn-red {
+	color: #fff;
+	background-color: #FF8080;
+	border-color: #990000;
+}
+
+.btn-red:hover,
+.btn-red:focus,
+.btn-red.focus,
+.btn-red:active,
+.btn-red.active,
+.open > .dropdown-toggle.btn-red {
+  color: #fff;
+  background-color: #FF8080;
+  border-color: #990000;
+}
+
+
+.tabela-filtro
+{
+	margin-top:20px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.input-text-filtro
+{
+	width:50px;
+}
+
+
+
+
+
+body { font-size: 140%;
+
+ }
+ 
+.grid-lotes
+{
+	margin-top:20px;
+}
+
+.cabecalho-panel-lotes
+{
+	height:50px;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+
+div.dataTables_paginate
+{
+	margin: 0;
+	white-space: nowrap;
+	text-align: right;
+	cursor:pointer;
+	padding-left:10px;
+}
+
+a.paginate_button
+{
+	margin-left:5px;
+}
+

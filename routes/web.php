@@ -23,9 +23,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
+
+Route::get('/', function (FipemodeloRepository $repository) {
+    
+    $fipe_modelos = $repository->search((string) request('q'));
+    
+    //$fipe_modelos = collect($fipemodel);
+//d(json_encode($fipe_modelos));
     return view('Fipemodelos.index', [
-        'fipe_modelos' => App\fipe_modelo::all(),
+        'fipe_modelos' => $fipe_modelos,
     ]);
 });
 
@@ -38,7 +44,7 @@ Route::get('/artigos', function () {
 
 Route::get('/search', function (ArticlesRepository $repository) {
     $articles = $repository->search((string) request('q'));
-
+    dd($articles);
     return view('articles.index', [
         'articles' => $articles,
     ]);
@@ -48,9 +54,19 @@ Route::get('/search', function (ArticlesRepository $repository) {
 Route::get('/search_fipe', function (FipemodeloRepository $repository) {
     
     $fipe_modelos = $repository->search((string) request('q'));
-
-    return view('Fipemodelos.index', [
+     return view('Fipemodelos.index', [
         'fipe_modelos' => $fipe_modelos,
     ]);
+
 });
 
+Route::get('ajax', function(){ return view('ajax'); });
+Route::post('/postajax','AjaxController@post');
+
+Route::get('/search_fipe_grafico', function (FipemodeloRepository $repository) {
+//dd('paulo aqui')    ;
+    $fipe_modelos = $repository->search_modelo_grafico((string) request('q'));
+    //$fipe_modelos = $repository->search_modelo_grafico(string $modelo_cod_fipe, String $ano_modelo);
+
+    return $fipe_modelos;
+});

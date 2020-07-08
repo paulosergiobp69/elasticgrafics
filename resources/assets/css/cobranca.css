@@ -1,0 +1,367 @@
+@charset "utf-8";
+/* CSS personalizado */
+
+body {
+	padding-top:75px;
+	font-size:13px;
+}
+
+.modal-dialog#teste {
+    max-height: 800px;
+	min-width:900px;
+	font-size:13px;
+}
+
+.row {
+	margin-bottom:5px;
+}
+.panel {
+	margin-bottom:0px;
+	margin-left:0px;
+}
+
+.badge-vermelho {
+	background:#F00;
+}
+
+.badge-azul {
+	background:#006;
+}
+
+.input-group-addon-azul
+{
+	background:#00F;
+	color:#FFF;
+}
+
+.input-group-addon-vermelho
+{
+	background:#900;
+	color:#FFF;
+}
+
+.input-text-med5
+{
+	width:60px;
+	text-align:center;
+	font-weight: bold;
+	font-size:14px;	
+}
+
+#previsao-meses {
+	margin-top:10px;
+}
+
+.input-text-med5-vermelho
+{
+	width:60px;
+	text-align:center;
+	font-weight: bold;
+	color:#F00;
+	font-size:14px;	
+}
+
+.trf-virtual
+{
+	color:#F00;
+	font-weight: bold;
+}
+
+.link-tela-transf-cwb a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none;
+}
+
+.link-tela-transf-poa a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none;  
+}
+
+.link-tela-transf-cvj a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none; 
+}
+
+.link-tela-transf-itj a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none; 
+}
+
+.link-tela-transf-vzg a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none; 
+}
+
+.link-tela-transf-bh a:link, a:visited, a:hover, a:active
+{
+ text-decoration:none; 
+ color:#000
+}
+
+.menu-fornecedores a:link, a:visited, a:hover, a:active
+{
+	 text-decoration:none; 
+}
+
+
+.input-text-peq5
+{
+	width:60px;
+	border:0px;
+	text-align:center;
+	font-weight: bold;	
+}
+
+.input-total-compra-peq5
+{
+	width:60px;
+	border:0px;
+	text-align:center;
+	font-weight: bold;
+	background:#FFF;
+	color:#009;	
+	font-weight: bold;	
+}
+
+.input-text-peq5-vermelho
+{
+	width:60px;
+	border:0px;
+	text-align:center;
+	font-weight: bold;
+	color:#F00;
+}
+
+.input-text-peq5-comp
+{
+	width:55px;
+	border:1px;
+	text-align:center;
+	font-weight: bold;
+	color:#009;	
+	background:#E1E1FF;	
+}
+
+.input-text-peq5-visible
+{
+	width:60px;
+	text-align:center;
+	font-weight: bold;
+	color:#006;
+}
+
+.previsao
+{	
+	width:70px;
+	color:#009;
+	font-weight: bold;
+	font-size:14px;
+}
+
+.tabela_linha_altura {
+	border-spacing:0px;
+}
+
+.table-font {
+	font-size:13px;
+}
+
+.table-previsao {
+	font-size:13px;
+	width:150px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.panel-filtro
+{
+	width:600px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	
+}
+.panel-enge {
+
+  border-color: #660000;
+  width:100%;
+  margin-left: 0px; 
+  margin-right: 0px;
+}
+.panel-enge > .panel-heading {
+  color: #fff;
+  background-color: #660000;
+  border-color: #660000;
+}
+.panel-enge > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #660000;
+}
+.panel-enge > .panel-heading .badge {
+  color: #660000;
+  background-color: #fff;
+}
+.panel-enge > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #660000;
+}
+
+.panel-enge-black {
+  border-color: #333333;
+  font-size:13px;
+}
+
+.panel-enge-black input
+{
+  font-size:12px;
+}
+
+.totais
+{
+	text-align:center;
+	font-weight: bold;
+}
+
+
+.panel-enge-black > .panel-heading {
+  color: #fff;
+  background-color: #333333;
+  border-color: #333333;
+}
+.panel-enge-black > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #333333;
+}
+.panel-enge-black > .panel-heading .badge {
+  color: #333333;
+  background-color: #fff;
+}
+.panel-enge-black > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #333333;
+}
+
+
+.panel-enge-azul {
+  border-color: #000033;
+}
+.panel-enge-azul > .panel-heading {
+  color: #fff;
+  background-color: #000033;
+  border-color: #000033;
+}
+.panel-enge-azul > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #000033;
+}
+.panel-enge-azul > .panel-heading .badge {
+  color: #000033;
+  background-color: #fff;
+}
+.panel-enge-azul > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #000033;
+}
+
+
+
+.panel-enge-verde {
+  border-color: #003300;
+}
+.panel-enge-verde > .panel-heading {
+  color: #fff;
+  background-color: #003300;
+  border-color: #003300;
+}
+.panel-enge-verde > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #003300;
+}
+.panel-enge-verde > .panel-heading .badge {
+  color: #003300;
+  background-color: #fff;
+}
+.panel-enge-verde > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #003300;
+}
+
+.panel-enge-laranja {
+  border-color: #CC3300;
+}
+.panel-enge-laranja > .panel-heading {
+  color: #fff;
+  background-color: #CC3300;
+  border-color: #CC3300;
+}
+.panel-enge-laranja > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #CC3300;
+}
+.panel-enge-laranja > .panel-heading .badge {
+  color: #CC3300;
+  background-color: #fff;
+}
+.panel-enge-laranja > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #CC3300;
+}
+
+.panel-enge-marrom {
+  border-color: #663300;
+}
+.panel-enge-marrom > .panel-heading {
+  color: #fff;
+  background-color: #663300;
+  border-color: #663300;
+}
+.panel-enge-marrom > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #663300;
+}
+.panel-enge-marrom > .panel-heading .badge {
+  color: #663300;
+  background-color: #fff;
+}
+.panel-enge-marrom > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #663300;
+}
+
+.panel-enge-roxo {
+  border-color: #333366;
+}
+.panel-enge-roxo > .panel-heading {
+  color: #fff;
+  background-color: #333366;
+  border-color: #333366;
+}
+.panel-enge-roxo > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #333366;
+}
+.panel-enge-roxo > .panel-heading .badge {
+  color: #333366;
+  background-color: #fff;
+}
+.panel-enge-roxo > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #333366;
+}
+
+.badge-verde {
+	background:#060;
+}
+
+
+.table-transf
+{
+	width:350px;
+	font-size:13px;
+}
+
+.table-responsive {
+   border: 1px solid #ddd;
+   margin-bottom: 15px;
+   overflow: auto;
+   width: 100%;
+}
+
+.table-historico
+{
+	font-size:13px;
+}
+
+
+
+
+
+
+

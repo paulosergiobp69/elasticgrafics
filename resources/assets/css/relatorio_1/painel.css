@@ -1,0 +1,25 @@
+@charset "iso-8859-2";
+/* CSS Document */
+
+body {
+	background:url(../img/white_carbonfiber.png);
+}
+
+.badge-vermelho{
+	background:#F00;
+}
+
+.badge-azul{
+	background:#00F;
+}
+
+.conteudo-painel {
+	background:#FFF;
+	border-radius:8px;
+	border:1px solid #eee;
+	box-shadow: 2px 2px 5px #888;
+}
+
+.conteudo-painel-int {
+	padding:12px;
+}

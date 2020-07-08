@@ -19,15 +19,18 @@ class ElasticsearchRepository implements ArticlesRepository
 
     public function search(string $query = ''): Collection
     {
-        $items = $this->searchOnElasticsearch($query);
 
+        $items = $this->searchOnElasticsearch($query);
+    
+        dd($this->buildCollection($items));
+    
         return $this->buildCollection($items);
     }
 
     private function searchOnElasticsearch(string $query = ''): array
     {
         $model = new Article;
-
+        
         $items = $this->elasticsearch->search([
             'index' => $model->getSearchIndex(),
             'type' => $model->getSearchType(),
@@ -47,7 +50,7 @@ class ElasticsearchRepository implements ArticlesRepository
     private function buildCollection(array $items): Collection
     {
         $ids = Arr::pluck($items['hits']['hits'], '_id');
-
+        
         return Article::findMany($ids)
             ->sortBy(function ($article) use ($ids) {
                 return array_search($article->getKey(), $ids);

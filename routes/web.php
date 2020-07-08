@@ -25,14 +25,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/', function (FipemodeloRepository $repository) {
-    
     $fipe_modelos = $repository->search((string) request('q'));
-    
-    //$fipe_modelos = collect($fipemodel);
-//d(json_encode($fipe_modelos));
+
     return view('Fipemodelos.index', [
-        'fipe_modelos' => $fipe_modelos,
-    ]);
+       'fipe_modelos' => $fipe_modelos,
+   ]);
+/*   
+    return view('Fipemodelos.index', [
+        'fipe_modelos' => App\fipe_modelo::all(),
+    ]);*/
 });
 
 
@@ -44,7 +45,6 @@ Route::get('/artigos', function () {
 
 Route::get('/search', function (ArticlesRepository $repository) {
     $articles = $repository->search((string) request('q'));
-    dd($articles);
     return view('articles.index', [
         'articles' => $articles,
     ]);
@@ -54,6 +54,7 @@ Route::get('/search', function (ArticlesRepository $repository) {
 Route::get('/search_fipe', function (FipemodeloRepository $repository) {
     
     $fipe_modelos = $repository->search((string) request('q'));
+
      return view('Fipemodelos.index', [
         'fipe_modelos' => $fipe_modelos,
     ]);

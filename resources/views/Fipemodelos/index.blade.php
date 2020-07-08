@@ -37,21 +37,22 @@
                       
 
                         @forelse ($fipe_modelos as $fipe_modelo)
+                       
                           <tr>
                             <td>
                            
                     <article class="mb-3">
                         <!-- Default unchecked -->
                           <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}">
+                              <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}">
                              
-                              <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}"><h4>{{ $fipe_modelo->_source['modelo'] }} </h4></label>
+                              <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}"><h4>{{ $fipe_modelo->modelo_desc }} </h4></label>
                           </div>
-                          <div id="confirmacao-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}" style="display:none">O checkbox está selecionado</div>
+                          <div id="confirmacao-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}" style="display:none">O checkbox está selecionado</div>
                         <p class="m-0">{{ $fipe_modelo->_source['codigo_fipe'] }}</body>
 
                         <div>
-                        Ano: {{ $fipe_modelo->_source['ano_modelo'] }} - Tipo: {{ $fipe_modelo->_source['tipo_veiculos'] }}
+                        Ano: {{ $fipe_modelo->ano_modelo }} - Tipo: {{ $fipe_modelo->tipo_id}}
                         </div>
                     </article>
                     </td>
@@ -63,29 +64,7 @@
                         </tbody>
                      </table>
                 </div>
-
-
-
-  
-                <nav aria-label="...">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <span class="page-link">Anterior</span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <span class="page-link">
-        2
-        <span class="sr-only">(atual)</span>
-      </span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Próximo</a>
-    </li>
-  </ul>
-</nav>
-
+               
             </div>
         </div>
     </div>

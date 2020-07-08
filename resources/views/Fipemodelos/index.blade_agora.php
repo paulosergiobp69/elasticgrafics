@@ -26,10 +26,11 @@
                 </form>
                 
                     @forelse ($fipe_modelos as $fipe_modelo)
+                  
                     <article class="mb-3">
                         <!-- Default unchecked -->
                           <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}">
+                              <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo['codigo_fipe'] }}-{{ $fipe_modelo->ano_modelo }}">
                              
                               <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}"><h4>{{ $fipe_modelo->modelo_desc }} </h4></label>
                           </div>

@@ -1,10 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fipe_modelo\FipemodeloRepository;
 use App\Fipe_modelo\ElasticsearchRepository;
-error_reporting(E_ALL ^ E_NOTICE);
 
 
 class AjaxController extends Controller
@@ -20,57 +20,44 @@ class AjaxController extends Controller
         $fipe_modelos = array();
 
         $elastics = env('ELASTICSEARCH_ENABLED');
-       // dd($elastics.'-'.$modeloFipe.'-'.$anoFipe);
-        if(!$elastics){
+        if($elastics){
             $fipe_modelos =  $repository->search((string) request('q'));
         }else{
             $fipe_modelos = $repository->search_modelo_grafico($modeloFipe, $anoFipe);
         }
+        
+
+
         $modelos = array();
         $modelos[0] =  '.Meses';
         $ano = 0;
         $linha = 1;
-        $i = 0;
-       dd($fipe_modelos->_source['cotacao']);
 
-        foreach ($fipe_modelos->_source['cotacao'] as $fipe_modelo) {
-            
-            $ano = date('Y', strtotime($fipe_modelo->_source['cotacao'][$i]['data-referencia']));
-            
+       
+
+        foreach ($fipe_modelos as $fipe_modelo) {
+            $ano = date('Y', strtotime($fipe_modelo->ref_date));
             if (!in_array($ano, $modelos)) { 
                 $modelos[$linha] = $ano;
                 $linha++;
             }
-            echo $ano.'-';
-            print_r($modelos);
-
-            $i++;
         }
-        
+       
 
         sort($modelos);
         $ano = $modelos;
-
-        //dd($ano);
         $inicio = 0;
-        $i = 0;
         $status = 'Usado';
 
         //dd($modelos);
 
         foreach ($ano as $key => $val) {
             foreach ($fipe_modelos as $fipe_modelo) {
-                dd($fipe_modelo);
-                //dd($fipe_modelo->_source['cotacao'][$i]['status']);
-                $fipe_modelo_status = $fipe_modelo->_source['cotacao'][$i]['status'];
-                //dd($fipe_modelo->_source['cotacao'][$i]['status']);
-                //echo $status.'-'.$fipe_modelo_status.'-'.$fipe_modelo->_source['cotacao'][$i]['ref-id'];
-                //dd($fipe_modelo);
-                if($status === $fipe_modelo_status){
-                    $mes_cotacao = date('m', strtotime($fipe_modelo->_source['cotacao'][$i]['data-referencia']));
+                if($status == $fipe_modelo->status){
+                    $mes_cotacao = date('m', strtotime($fipe_modelo->ref_date));
                     if(($inicio == 0) && ($mes_cotacao == 1)){
                         //$modelos[$linha] = $fipe_modelo->cotacao_valor.'   -    '.$fipe_modelo->ref_date;
-                        $modelos[$linha] = floatval($fipe_modelo->_source['cotacao'][$i]['valor']) == 0 ? NULL : floatval($fipe_modelo->_source['cotacao'][$i]['valor']);
+                        $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);
                         $inicio = 1;
                     }else{
                         if($inicio == 0){
@@ -78,20 +65,18 @@ class AjaxController extends Controller
                                 $modelos[$linha] = NULL; //.'   -    '.$fipe_modelo->ref_date;
                                 $linha++;
                             } 
-                            $modelos[$linha] = floatval($fipe_modelo->_source['cotacao'][$i]['valor']) == 0 ? NULL : floatval($fipe_modelo->_source['cotacao'][$i]['valor']) ;//.'   -    '.$fipe_modelo->ref_date;
+                            $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor) ;//.'   -    '.$fipe_modelo->ref_date;
                             $inicio = 1;
                         }else{
-                            $modelos[$linha] = floatval($fipe_modelo->_source['cotacao'][$i]['valor']) == 0 ? NULL : floatval($fipe_modelo->_source['cotacao'][$i]['valor']);//.'   -    '.$fipe_modelo->ref_date;
+                            $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);//.'   -    '.$fipe_modelo->ref_date;
                         }
                     }
                     $linha++;
     
                 }
-                $i++;
             }    
         }
 
-        dd($modelos);
 
         if(count($modelos) < 12){
             $ano_anterior  = (int) $anoFipe-1;

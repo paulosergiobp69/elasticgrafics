@@ -77,3 +77,22 @@ Route::get('/search_fipe_grafico', function (FipemodeloRepository $repository) {
 
     return $fipe_modelos;
 });
+
+Route::get('/search_widget', function (FipemodeloRepository $repository) {
+    
+  
+    $fipe_modelos = $repository->search((string) request('q'));
+
+    $elastics = env('ELASTICSEARCH_ENABLED');
+    if($elastics){
+        return view('Fipemodelos.elasticwidget', [
+            'fipe_modelos' => $fipe_modelos,
+        ]);
+        
+    }else{
+     return view('Fipemodelos.widget', [
+        'fipe_modelos' => $fipe_modelos,
+    ]);
+     }
+
+});

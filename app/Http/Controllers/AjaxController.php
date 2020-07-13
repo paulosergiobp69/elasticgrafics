@@ -14,69 +14,127 @@ class AjaxController extends Controller
         $modeloFipe = $request->input('modelo_cod_fipe');
         $anoFipe = $request->input('ano_modelo');  
 
-       // dd($modeloFipe.'-'.$anoFipe);
-
-//        $fipe_modelos = $repository->search((string) request('q'));
         $fipe_modelos = array();
-
-        $elastics = env('ELASTICSEARCH_ENABLED');
-        if($elastics){
-            $fipe_modelos =  $repository->search((string) request('q'));
-        }else{
-            $fipe_modelos = $repository->search_modelo_grafico($modeloFipe, $anoFipe);
-        }
-        
-
-
         $modelos = array();
         $modelos[0] =  '.Meses';
         $ano = 0;
         $linha = 1;
 
-       
+        $elastics = env('ELASTICSEARCH_ENABLED');
+        if($elastics){
+            $fipe_modelos =  $repository->search((string) request('q'));
 
-        foreach ($fipe_modelos as $fipe_modelo) {
-            $ano = date('Y', strtotime($fipe_modelo->ref_date));
-            if (!in_array($ano, $modelos)) { 
-                $modelos[$linha] = $ano;
-                $linha++;
+            //foreach ($fipe_modelos->_sourcecotacao as $arr) {
+            foreach ($fipe_modelos as $key => $value) {
+                foreach ($value as $i => $valor) {
+                       $fipes = json_decode(json_encode($valor),TRUE);
+                }
             }
-        }
-       
 
-        sort($modelos);
-        $ano = $modelos;
-        $inicio = 0;
-        $status = 'Usado';
-
-        //dd($modelos);
-
-        foreach ($ano as $key => $val) {
-            foreach ($fipe_modelos as $fipe_modelo) {
-                if($status == $fipe_modelo->status){
-                    $mes_cotacao = date('m', strtotime($fipe_modelo->ref_date));
-                    if(($inicio == 0) && ($mes_cotacao == 1)){
-                        //$modelos[$linha] = $fipe_modelo->cotacao_valor.'   -    '.$fipe_modelo->ref_date;
-                        $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);
-                        $inicio = 1;
-                    }else{
-                        if($inicio == 0){
-                            for ($i = 1; $i < $mes_cotacao; $i++) {
-                                $modelos[$linha] = NULL; //.'   -    '.$fipe_modelo->ref_date;
-                                $linha++;
-                            } 
-                            $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor) ;//.'   -    '.$fipe_modelo->ref_date;
+            foreach($fipes['cotacao'] as $cotacao) 
+            {
+                $ano = date('Y', strtotime($cotacao['data-referencia']));
+                if (!in_array($ano, $modelos)) { 
+                    $modelos[$linha] = $ano;
+                    $linha++;
+                }
+                if($linha > 3){
+                    break;
+                }
+            }
+           
+            sort($modelos);
+            $ano = $modelos;
+            $inicio = 0;
+            $status = 'Usado';
+    
+            foreach ($ano as $key => $val) {
+                foreach($fipes['cotacao'] as $fipe_modelo){
+                    if($status == $fipe_modelo['status']){
+                        $mes_cotacao = date('m', strtotime($fipe_modelo['data-referencia']));
+                        $valor_veiculo = 0;
+                        $valor_veiculo = floatval(str_replace(',','.',str_replace('.','',substr(trim($fipe_modelo['valor']),2))));
+                        if(($inicio == 0) && ($mes_cotacao == 1)){
+                            //$modelos[$linha] = $fipe_modelo->cotacao_valor.'   -    '.$fipe_modelo->ref_date;
+                            $modelos[$linha] = $valor_veiculo == 0 ? NULL : $valor_veiculo;
                             $inicio = 1;
                         }else{
-                            $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);//.'   -    '.$fipe_modelo->ref_date;
+                            if($inicio == 0){
+                                for ($i = 1; $i < $mes_cotacao; $i++) {
+                                    $modelos[$linha] = NULL; //.'   -    '.$fipe_modelo->ref_date;
+                                    $linha++;
+                                } 
+                                $modelos[$linha] = $valor_veiculo == 0 ? NULL : $valor_veiculo ;//.'   -    '.$fipe_modelo->ref_date;
+                                $inicio = 1;
+                            }else{
+                                $modelos[$linha] = $valor_veiculo == 0 ? NULL : $valor_veiculo;//.'   -    '.$fipe_modelo->ref_date;
+                            }
                         }
+                        $linha++;
+        
                     }
-                    $linha++;
+                }    
+            }
     
+        }else{
+            // bd
+            $fipe_modelos = $repository->search_modelo_grafico($modeloFipe, $anoFipe);
+
+            foreach ($fipe_modelos as $fipe_modelo) {
+                $ano = date('Y', strtotime($fipe_modelo->ref_date));
+                if (!in_array($ano, $modelos)) { 
+                   // print_r('data:'.$fipe_modelo->ref_date.' ano:'.$ano);
+                    $modelos[$linha] = $ano;
+                    $linha++;
                 }
-            }    
+                if($linha > 3){
+                    break;
+                }
+            }
+           
+            if(count($modelos) < 4){
+                for($i = count($modelos)+1; $i <= 4;$i++){
+                    $modelos[$linha] = '';
+                    $linha++;
+                }
+            }
+
+            sort($modelos);
+            $ano = $modelos;
+            $inicio = 0;
+            $status = 'Usado';
+
+
+            foreach ($ano as $key => $val) {
+                foreach ($fipe_modelos as $fipe_modelo) {
+                    if($status == $fipe_modelo->status){
+                        $mes_cotacao = date('m', strtotime($fipe_modelo->ref_date));
+                        if(($inicio == 0) && ($mes_cotacao == 1)){
+                            //$modelos[$linha] = $fipe_modelo->cotacao_valor.'   -    '.$fipe_modelo->ref_date;
+                            $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);
+                            $inicio = 1;
+                        }else{
+                            if($inicio == 0){
+                                for ($i = 1; $i < $mes_cotacao; $i++) {
+                                    $modelos[$linha] = NULL; //.'   -    '.$fipe_modelo->ref_date;
+                                    $linha++;
+                                } 
+                                $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor) ;//.'   -    '.$fipe_modelo->ref_date;
+                                $inicio = 1;
+                            }else{
+                                $modelos[$linha] = floatval($fipe_modelo->cotacao_valor) == 0 ? NULL : floatval($fipe_modelo->cotacao_valor);//.'   -    '.$fipe_modelo->ref_date;
+                            }
+                        }
+                        $linha++;
+        
+                    }
+                }    
+            }
+    
         }
 
+
+        $modelos[0] = 'Meses';
 
         if(count($modelos) < 12){
             $ano_anterior  = (int) $anoFipe-1;
@@ -113,7 +171,6 @@ class AjaxController extends Controller
     
         }
 
-
 /*
         dd($modelos);
 
@@ -132,8 +189,8 @@ class AjaxController extends Controller
         array_push($data, array(10, 15, 20));
 */
 
-        return $data;        
-     }
+        return $data;     
+    }
     
 
 }

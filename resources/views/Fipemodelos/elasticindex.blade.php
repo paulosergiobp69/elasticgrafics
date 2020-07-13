@@ -45,11 +45,11 @@
               <tr>
                 <th style="font-size:11px">
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}">
-                    <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}">{{ $fipe_modelo->modelo_desc }}</label>
+                    <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}">
+                    <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}">{{ $fipe_modelo->_source['modelo'] }}</label>
                   </div>
                 </th>
-                <th style="font-size:11px">Ano:{{ $fipe_modelo->ano_modelo }}</th>
+                <th style="font-size:11px">Ano:{{ $fipe_modelo->_source['ano_modelo'] }}</th>
               </tr>
               @empty
                 <p></p>
@@ -80,15 +80,14 @@
   </div>
 
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script type="text/javascript">
+    <script type="text/javascript">
     
       google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
     
 
     function drawChart(data) {
-//console.log('entrei 1');
-//console.log(data);
+
       if (typeof data === "undefined") {
          var data = new google.visualization.DataTable();
          data.addColumn('number', 'Meses');
@@ -111,6 +110,57 @@
          [12,  0, 0, 0]
        ]);
 
+/*
+         data.addRows([
+         [1,  , 80.8, 41.8],
+         [2,  , 69.5, 32.4],
+         [3,  ,   57, 25.7],
+         [4,  , 18.8, 10.5],
+         [5,  , 17.6, 10.4],
+         [6,  , 13.6,  7.7],
+         [7,   7.6, 12.3,  9.6],
+         [8,  12.3, 29.2, 10.6],
+         [9,  16.9, 42.9, 14.8],
+         [10, 12.8, 30.9, 11.6],
+         [11,  5.3,  7.9,  4.7],
+         [12,  6.6,  8.4,  5.2]
+       ]);
+*/
+
+/*
+         data.addRows([
+         [1,  0, 0, 0],
+         [2,  0, 0, 0],
+         [3,  0, 0, 0],
+         [4,  0, 0, 0],
+         [5,  0, 0, 0],
+         [6,  0, 0, 0],
+         [7,  0, 0, 0],
+         [8,  0, 0, 0],
+         [9,  0, 0, 0],
+         [10,  0, 0, 0],
+         [11,  0, 0, 0],
+         [12,  0, 0, 0]
+       ]);
+       */
+       
+/*
+         data.addRows([
+         [1,  37.8, 80.8, 41.8],
+         [2,  30.9, 69.5, 32.4],
+         [3,  25.4,   57, 25.7],
+         [4,  11.7, 18.8, 10.5],
+         [5,  11.9, 17.6, 10.4],
+         [6,   8.8, 13.6,  7.7],
+         [7,   7.6, 12.3,  9.6],
+         [8,  12.3, 29.2, 10.6],
+         [9,  16.9, 42.9, 14.8],
+         [10, 12.8, 30.9, 11.6],
+         [11,  5.3,  7.9,  4.7],
+         [12,  6.6,  8.4,  5.2]
+       ]);
+*/
+//       console.log(data);
 
       } 
 
@@ -128,7 +178,7 @@
         }
       };
 
-      var chart = new google.charts.Line(document.getElementById('grafics'));
+      var chart = new google.charts.Line(document.getElementById('line_top_x'));
 
       chart.draw(data, google.charts.Line.convertOptions(options));
     }
@@ -164,10 +214,6 @@
               console.log(response[4][0] + ',' + response[4][1] + ',' + response[4][2]);
               console.log(response);
 
-              if (response[3] == null) {
-                 response[3] = "2020";
-              }
-
               var data = new google.visualization.DataTable();
               data.addColumn('number', response[0].toString());
               data.addColumn('number', response[1].toString());
@@ -188,7 +234,6 @@
                    [11,response[14][0],response[14][1],response[14][2]],
                    [12,response[15][0],response[15][1],response[15][2]],
               ]);
-            // alert('E AI');
               drawChart(data);
           },
           error: function () {

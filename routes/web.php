@@ -25,16 +25,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/', function (FipemodeloRepository $repository) {
-    $fipe_modelos = $repository->search((string) request('q'));
-/*
-    return view('Fipemodelos.index', [
-       'fipe_modelos' => $fipe_modelos,
-   ]);
-   */
-   
-    return view('Fipemodelos.index', [
-        'fipe_modelos' => App\fipe_modelo::all(),
-    ]);
+    $elastics = env('ELASTICSEARCH_ENABLED');
+    if($elastics){
+//        dd($fipe_modelos);
+        $fipe_modelos = $repository->search((string) request('q'));
+        return view('Fipemodelos.elasticindex', [
+            'fipe_modelos' => $fipe_modelos,
+        ]);
+
+    }else{
+        $fipe_modelos = $repository->search((string) request('q'));
+        return view('Fipemodelos.index', [
+            'fipe_modelos' => $fipe_modelos,
+        ]);
+    }
+
 });
 
 

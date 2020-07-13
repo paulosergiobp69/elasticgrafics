@@ -38,7 +38,31 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css ">   
 -->
    
+<style>
+    table {
+      border-collapse: none;
+      border-spacing: 0;
+      width: 100%;
+      border: none;
+      background-color: #ffffff;
+    }
+    th,
+    td {
+      border: none;
+      text-align: left;
+      padding: 8px;
+    }
+    #tr:nth-child(even) {
+    #  background-color: #f2f2f2
+    #}
 
+    .td {
+    background: hotpink;
+    display: table-cell;
+    height: 8px;
+    width: 200px;
+
+  </style>
 
 
 </head>

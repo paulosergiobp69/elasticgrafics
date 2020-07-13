@@ -1,83 +1,73 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-<div class="card">
-  <div class="card-header">
-    Modelos de Veiculos - widget <small>({{ $fipe_modelos->count() }})</small>
-  </div>
-<div class="card-body">
-<body>
-  <form action="{{ url('search_fipe') }}" method="get">
-  <div class="row justify-content-md-left">
-    <div class="col col-lg-3">
-    <input
-        type="text"
-        name="q"
-        class="form-control "
-        placeholder="Busca..."
-        value="{{ request('q') }}"
-    />
-    </div>
-    <div class="col-lg-1">
-      <div id="line_top_x" class="col-lg-81"></div>
-    </div>
-  </div>
-  </form>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Modelos de Veiculos <small>({{ $fipe_modelos->count() }})</small>
+            </div>
+            <div class="card-body">
+                <form action="{{ url('search_fipe') }}" method="get">
 
-  <div  class="container-fluid cont-grafico">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="4" ><p class="text-left"></th>
-          <th colspan="3"><p class="text-left"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th colspan="4">
-            <table> 
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-              @forelse ($fipe_modelos as $fipe_modelo)
-              <tr>
-                <th style="font-size:11px">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}">
-                    <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->_source['codigo_fipe'] }}-{{ $fipe_modelo->_source['ano_modelo'] }}">{{ $fipe_modelo->_source['modelo'] }}</label>
-                  </div>
-                </th>
-                <th style="font-size:11px">Ano:{{ $fipe_modelo->_source['ano_modelo'] }}</th>
-              </tr>
-              @empty
-                <p></p>
-              @endforelse 
-            </table>
-          </th>
-          <th  colspan="4"><div id="grafics" style="border: none solid #ccc"></th>
-        </tr>
-        <tr>
-          <th colspan="4"  style="font-size:11px"></th>
-          <th colspan="3" style="font-size:11px">
-            <table>
-              <tr>
-                <table>
-                  <tr>
-                    <th style="font-size:11px">6 meses</th>
-                    <th style="font-size:11px">12 meses</th>
-                    <th style="font-size:11px">18 meses</th>
-                    <th style="font-size:11px">Todos</th>
-                  </tr>
-                </table>
-              </tr>
-            </table>
-          </th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+                    <div class="row justify-content-md-left">
+                        <div class="col col-lg-3">
+                        <input
+                            type="text"
+                            name="q"
+                            class="form-control "
+                            placeholder="Busca..."
+                            value="{{ request('q') }}"
+                        />
+                        </div>
+                        <div class="col-lg-1">
+                          <div id="line_top_x" class="col-lg-81"></div>
+                        </div>
+                    </div>
+                </form>
+    
+                <div class="box-body">
+                    <table id="GridFipe" class="table table-condensed table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                      
+
+                        @forelse ($fipe_modelos as $fipe_modelo)
+                       
+                          <tr>
+                            <td>
+                           
+                    <article class="mb-3">
+                        <!-- Default unchecked -->
+                          <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}">
+                             
+                              <label class="custom-control-label" for="estaSelecionado-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}"><h4>{{ $fipe_modelo->modelo_desc }} </h4></label>
+                          </div>
+                          <div id="confirmacao-{{ $fipe_modelo->modelo_cod_fipe }}-{{ $fipe_modelo->ano_modelo }}" style="display:none">O checkbox está selecionado</div>
+                        <p class="m-0">{{ $fipe_modelo->_source['codigo_fipe'] }}</body>
+
+                        <div>
+                        Ano: {{ $fipe_modelo->ano_modelo }} - Tipo: {{ $fipe_modelo->tipo_id}}
+                        </div>
+                    </article>
+                    </td>
+                    </tr>
+                    @empty
+                        <p></p>
+                    @endforelse
+                            </td>
+                        </tbody>
+                     </table>
+                </div>
+               
+            </div>
+        </div>
+    </div>
 
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
